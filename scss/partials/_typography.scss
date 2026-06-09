@@ -1,0 +1,36 @@
+// =============================================================================
+// _typography.scss
+// Typography Partial
+// Font families, sizes, weights and line-height tokens
+// =============================================================================
+
+// -------------------------------------
+// Font Stack
+// -------------------------------------
+$font-family-base: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+$font-family-mono: 'Courier New', Courier, monospace;
+
+// -------------------------------------
+// Font Sizes
+// -------------------------------------
+$font-size-xs:   0.75rem;   // 12px
+$font-size-sm:   0.8125rem; // 13px
+$font-size-base: 0.9375rem; // 15px
+$font-size-md:   1rem;      // 16px
+$font-size-lg:   1.125rem;  // 18px
+$font-size-xl:   1.25rem;   // 20px
+
+// -------------------------------------
+// Font Weights
+// -------------------------------------
+$font-weight-regular: 400;
+$font-weight-medium:  500;
+$font-weight-semibold:600;
+$font-weight-bold:    700;
+
+// -------------------------------------
+// Line Heights
+// -------------------------------------
+$line-height-tight:  1.2;
+$line-height-base:   1.5;
+$line-height-loose:  1.7;

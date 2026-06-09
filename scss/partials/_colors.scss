@@ -1,0 +1,43 @@
+// =============================================================================
+// _colors.scss
+// Color Palette Partial
+// All brand and status color tokens used across the project
+// =============================================================================
+
+// -------------------------------------
+// Brand Colors
+// -------------------------------------
+$color-primary:       #00338d;  // to-action / primary blue
+$color-success:       #269924;  // successful - green
+$color-danger:        #ED2124;  // unsuccessful - red
+$color-pink:          #FD349C;  // link-list - pink
+$color-teal:          #00C0AE;  // short-list - teal
+$color-purple:        #7213EA;  // interviewed - purple
+$color-accent-light:  #C9D3F8;  // light accent / modal text bg
+$color-button:        #1E49E2;  // button & icon color
+
+// -------------------------------------
+// Status / Border Color Map
+// Keyed by status class modifier names
+// -------------------------------------
+$status-colors: (
+  "to-action":    $color-primary,
+  "successful":   $color-success,
+  "unsuccessful": $color-danger,
+  "link-list":    $color-pink,
+  "short-list":   $color-teal,
+  "interviewed":  $color-purple
+);
+
+// -------------------------------------
+// Neutral / UI Colors
+// -------------------------------------
+$color-white:         #ffffff;
+$color-bg-page:       #f0f2f8;
+$color-bg-card:       #ffffff;
+$color-text-primary:  #1a1a2e;
+$color-text-secondary:#555577;
+$color-border-light:  #e0e4f0;
+$color-shadow:        rgba(0, 0, 0, 0.08);
+$color-shadow-hover:  rgba(0, 51, 141, 0.15);
+$color-overlay:       rgba(0, 0, 0, 0.45);

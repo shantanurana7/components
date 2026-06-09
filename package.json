@@ -1,0 +1,27 @@
+{
+  "name": "profile-card",
+  "version": "1.0.0",
+  "description": "Responsive profile card grid component — vanilla HTML, CSS (SCSS), and JS. No external dependencies.",
+  "type": "module",
+  "main": "index.html",
+  "scripts": {
+    "sass:build": "sass scss/main.scss css/main.css --style=expanded",
+    "sass:watch": "sass scss/main.scss css/main.css --watch --style=expanded",
+    "build":      "node scripts/build.js",
+    "test": "echo \"No tests configured\" && exit 0"
+  },
+  "keywords": [
+    "profile-card",
+    "component",
+    "vanilla-js",
+    "scss",
+    "responsive",
+    "grid",
+    "carousel"
+  ],
+  "author": "Shantanu Rana",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.100.0"
+  }
+}
