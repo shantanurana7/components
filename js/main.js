@@ -113,13 +113,24 @@ function applyStatus(select) {
 
   if (!card || !statusBar) return;
 
-  // Swap modifier class
+  // Swap modifier class on the card
   STATUS_CLASSES.forEach(cls => card.classList.remove(cls));
   card.classList.add(`profile-card--${newStatus}`);
 
   // Update the CSS custom property so ::before dot + ::after arrow reflect the color
   const color = STATUS_COLORS[newStatus] || '';
   statusBar.style.setProperty('--status-color', color);
+
+  // Sync the modal bottom-border color by swapping its modifier class too
+  const cardId = card.dataset.cardId;
+  if (cardId) {
+    const modal = document.getElementById(`modal-${cardId}`);
+    if (modal) {
+      const MODAL_STATUS_CLASSES = Object.keys(STATUS_COLORS).map(k => `profile-modal--${k}`);
+      MODAL_STATUS_CLASSES.forEach(cls => modal.classList.remove(cls));
+      modal.classList.add(`profile-modal--${newStatus}`);
+    }
+  }
 }
 
 /**
