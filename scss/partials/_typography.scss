@@ -17,14 +17,17 @@
 // so both SCSS tokens and any external CSS override work from the same source.
 //
 :root {
-  // ↓ Change this one line to swap the font globally
-  --font-family-base: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-  --font-family-mono: 'Courier New', Courier, monospace;
+  // Body / UI text — Open Sans
+  --font-family-base:    'Open Sans', Arial, Helvetica, sans-serif;
+  // Headings — Open Sans Condensed
+  --font-family-heading: 'Open Sans Condensed', Arial, Helvetica, sans-serif;
+  --font-family-mono:    'Courier New', Courier, monospace;
 }
 
 // SCSS aliases — used throughout component styles
-$font-family-base: var(--font-family-base);
-$font-family-mono: var(--font-family-mono);
+$font-family-base:    var(--font-family-base);
+$font-family-heading: var(--font-family-heading);
+$font-family-mono:    var(--font-family-mono);
 
 // -------------------------------------
 // Font Sizes

@@ -4,9 +4,24 @@
  * Handles interactivity only:
  *  1. Modal open/close — per-card, precise targeting via data attributes
  *  2. Mobile carousel — scroll snapping + pagination dots
- *
- * All HTML (cards, modals, dots) is static in index.html.
+ *  3. Status dropdown — updates card modifier class + CSS color variable on change
+ *  4. Profile count — live heading counter
  */
+
+// =============================================================================
+// Status color map  (must match $status-colors in _colors.scss)
+// =============================================================================
+const STATUS_COLORS = {
+  'link-list':    '#FD349C',   // pink
+  'short-list':   '#00C0AE',   // teal
+  'interviewed':  '#7213EA',   // purple
+  'to-action':    '#00338d',   // primary blue
+  'successful':   '#269924',   // green
+  'unsuccessful': '#ED2124',   // red
+};
+
+/** All possible status modifier class names */
+const STATUS_CLASSES = Object.keys(STATUS_COLORS).map(k => `profile-card--${k}`);
 
 // =============================================================================
 // Modal Controller
@@ -79,6 +94,63 @@ const ModalController = (() => {
 
   return { open, close, closeActive };
 })();
+
+// =============================================================================
+// Status Dropdown
+// =============================================================================
+
+/**
+ * Applies the selected status to a card:
+ *  - Swaps the profile-card--<status> modifier class on the card root
+ *  - Sets the --status-color CSS custom property on the status-bar wrapper
+ *    (drives the ::before coloured dot)
+ * @param {HTMLSelectElement} select
+ */
+function applyStatus(select) {
+  const newStatus = select.value;
+  const card = select.closest('.profile-card');
+  const statusBar = select.closest('.profile-card__status-bar');
+
+  if (!card || !statusBar) return;
+
+  // Swap modifier class
+  STATUS_CLASSES.forEach(cls => card.classList.remove(cls));
+  card.classList.add(`profile-card--${newStatus}`);
+
+  // Update the CSS custom property so ::before dot + ::after arrow reflect the color
+  const color = STATUS_COLORS[newStatus] || '';
+  statusBar.style.setProperty('--status-color', color);
+}
+
+/**
+ * Initialise all status selects: set initial color and wire up change listener.
+ */
+function initStatusSelects() {
+  document.querySelectorAll('[data-status-select]').forEach(select => {
+    // Apply the initial color from the pre-selected option
+    applyStatus(select);
+
+    select.addEventListener('change', () => {
+      applyStatus(select);
+    });
+  });
+}
+
+// =============================================================================
+// Profile Count
+// =============================================================================
+
+/**
+ * Updates the heading counter to reflect total cards in the grid.
+ */
+function updateProfileCount() {
+  const countEl = document.getElementById('profile-count');
+  if (!countEl) return;
+
+  const cards = document.querySelectorAll('.custom-profile-section__card-item');
+  const n = cards.length;
+  countEl.textContent = n > 0 ? `\u00a0(${n})` : '';   // \u00a0 = non-breaking space
+}
 
 // =============================================================================
 // Mobile Carousel Pagination
@@ -169,6 +241,12 @@ document.addEventListener('DOMContentLoaded', () => {
     console.error('Profile card: Required DOM elements not found.');
     return;
   }
+
+  // ---- Update heading profile count ----
+  updateProfileCount();
+
+  // ---- Initialise status select dropdowns ----
+  initStatusSelects();
 
   // ---- Wire up mobile carousel pagination dots ----
   setupCarouselPagination(grid, dots);
