@@ -7,8 +7,24 @@
 // -------------------------------------
 // Font Stack
 // -------------------------------------
-$font-family-base: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-$font-family-mono: 'Courier New', Courier, monospace;
+//
+// HOW TO CHANGE THE FONT:
+//   1. Load the new font (e.g. add a Google Fonts <link> in index.html)
+//   2. Update the CSS custom property below — ONE change propagates everywhere:
+//        --font-family-base: 'Your New Font', fallback, sans-serif;
+//
+// The SCSS variable $font-family-base reads from that custom property via var()
+// so both SCSS tokens and any external CSS override work from the same source.
+//
+:root {
+  // ↓ Change this one line to swap the font globally
+  --font-family-base: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-family-mono: 'Courier New', Courier, monospace;
+}
+
+// SCSS aliases — used throughout component styles
+$font-family-base: var(--font-family-base);
+$font-family-mono: var(--font-family-mono);
 
 // -------------------------------------
 // Font Sizes

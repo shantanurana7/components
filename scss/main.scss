@@ -20,6 +20,16 @@
   padding: 0;
 }
 
+// Ensure form elements (buttons, inputs, selects) inherit the body font —
+// browsers reset these to their own system font by default.
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
 body {
   font-family: $font-family-base;
   font-size: $font-size-base;
